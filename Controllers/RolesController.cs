@@ -18,7 +18,7 @@ namespace BasicAPIProject.Controllers
         {
             //System.Threading.Thread.Sleep(1000);
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
-            {
+            { 
                 return await DB.Sec_Role.ToListAsync();
             }
         }

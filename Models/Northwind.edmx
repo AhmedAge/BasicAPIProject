@@ -160,6 +160,8 @@
           <Property Name="MenuOrder" Type="int" />
           <Property Name="Images" Type="nvarchar" MaxLength="200" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="color" Type="nvarchar" MaxLength="100" />
+          <Property Name="path" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Sec_Role">
           <Key>
@@ -628,6 +630,8 @@
           <Property Name="MenuOrder" Type="Int32" />
           <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="color" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Sec_Role">
           <Key>
@@ -658,24 +662,6 @@
           <Property Name="canEdit" Type="Boolean" Nullable="false" />
           <Property Name="canDelete" Type="Boolean" Nullable="false" />
           <Property Name="canAdd" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Sec_Users">
-          <Key>
-            <PropertyRef Name="userId" />
-          </Key>
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <Property Name="roleId" Type="Int32" />
-          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="tel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Isdeleted" Type="Boolean" />
-          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Department" Type="Int32" />
-          <Property Name="image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Shipper">
           <Key>
@@ -852,7 +838,6 @@
           <EntitySet Name="Sec_Role" EntityType="Self.Sec_Role" />
           <EntitySet Name="Sec_RoleMenu" EntityType="Self.Sec_RoleMenu" />
           <EntitySet Name="Sec_RoleMenuUser" EntityType="Self.Sec_RoleMenuUser" />
-          <EntitySet Name="Sec_Users" EntityType="Self.Sec_Users" />
           <EntitySet Name="Shippers" EntityType="Self.Shipper" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -899,6 +884,7 @@
             <End Role="Territories" EntitySet="Territories" />
           </AssociationSet>
           <EntitySet Name="Departments" EntityType="NORTHWNDModel.Department" />
+          <EntitySet Name="Sec_Users" EntityType="NORTHWNDModel.Sec_Users" />
         </EntityContainer>
         <EntityType Name="Department">
           <Key>
@@ -908,6 +894,24 @@
           <Property Name="DeptName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="managerId" Type="Int32" Nullable="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sec_Users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="roleId" Type="Int32" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Isdeleted" Type="Boolean" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1042,6 +1046,8 @@
           <EntitySetMapping Name="Sec_Menu">
             <EntityTypeMapping TypeName="NORTHWNDModel.Sec_Menu">
               <MappingFragment StoreEntitySet="Sec_Menu">
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="color" ColumnName="color" />
                 <ScalarProperty Name="menuId" ColumnName="menuId" />
                 <ScalarProperty Name="menuTitleAr" ColumnName="menuTitleAr" />
                 <ScalarProperty Name="menuTitleEn" ColumnName="menuTitleEn" />
@@ -1085,25 +1091,6 @@
                 <ScalarProperty Name="canEdit" ColumnName="canEdit" />
                 <ScalarProperty Name="canDelete" ColumnName="canDelete" />
                 <ScalarProperty Name="canAdd" ColumnName="canAdd" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sec_Users">
-            <EntityTypeMapping TypeName="NORTHWNDModel.Sec_Users">
-              <MappingFragment StoreEntitySet="Sec_Users">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="roleId" ColumnName="roleId" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="tel" ColumnName="tel" />
-                <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1188,6 +1175,25 @@
                 <ScalarProperty Name="managerId" ColumnName="managerId" />
                 <ScalarProperty Name="DeptName" ColumnName="DeptName" />
                 <ScalarProperty Name="deptId" ColumnName="deptId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sec_Users">
+            <EntityTypeMapping TypeName="NORTHWNDModel.Sec_Users">
+              <MappingFragment StoreEntitySet="Sec_Users">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

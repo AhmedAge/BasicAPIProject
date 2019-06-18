@@ -42,6 +42,10 @@ namespace BasicAPIProject.Controllers
                         parent.MenuOrder = m.MenuOrder;
                         parent.Images = m.Images;
                         parent.Description = m.Description;
+                        parent.color = m.color;
+                        parent.UserName = user.FullName;
+                        parent.UserImage = user.image;
+
                         parent.childMenusInfo = new List<Sec_Menu>();
                         foreach (Sec_Menu c in menus.Where(x => x.menuParentId != null && x.menuParentId == m.menuId))
                         {
@@ -56,6 +60,7 @@ namespace BasicAPIProject.Controllers
                             child.MenuOrder = c.MenuOrder;
                             child.Images = c.Images;
                             child.Description = c.Description;
+                            child.color = c.color;
 
                             parent.childMenusInfo.Add(child);
                         }

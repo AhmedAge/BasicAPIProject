@@ -24,5 +24,7 @@ namespace BasicAPIProject.Models
         public Nullable<int> MenuOrder { get; set; }
         public string Images { get; set; }
         public string Description { get; set; }
+        public string color { get; set; }
+        public string path { get; set; }
     }
 }

@@ -7,6 +7,9 @@ namespace BasicAPIProject.Models.CustomModel
 {
     public class MenusInfo: Sec_Menu
     {
+        public string UserName;
+        public string UserImage;
+
         public List<Sec_Menu> childMenusInfo;
     } 
 }

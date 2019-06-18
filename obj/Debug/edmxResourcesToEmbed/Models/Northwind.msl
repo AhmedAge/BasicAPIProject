@@ -128,6 +128,8 @@
     <EntitySetMapping Name="Sec_Menu">
       <EntityTypeMapping TypeName="NORTHWNDModel.Sec_Menu">
         <MappingFragment StoreEntitySet="Sec_Menu">
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="color" ColumnName="color" />
           <ScalarProperty Name="menuId" ColumnName="menuId" />
           <ScalarProperty Name="menuTitleAr" ColumnName="menuTitleAr" />
           <ScalarProperty Name="menuTitleEn" ColumnName="menuTitleEn" />
@@ -171,25 +173,6 @@
           <ScalarProperty Name="canEdit" ColumnName="canEdit" />
           <ScalarProperty Name="canDelete" ColumnName="canDelete" />
           <ScalarProperty Name="canAdd" ColumnName="canAdd" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Sec_Users">
-      <EntityTypeMapping TypeName="NORTHWNDModel.Sec_Users">
-        <MappingFragment StoreEntitySet="Sec_Users">
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="isActive" ColumnName="isActive" />
-          <ScalarProperty Name="roleId" ColumnName="roleId" />
-          <ScalarProperty Name="mobile" ColumnName="mobile" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="tel" ColumnName="tel" />
-          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
-          <ScalarProperty Name="FullName" ColumnName="FullName" />
-          <ScalarProperty Name="Department" ColumnName="Department" />
-          <ScalarProperty Name="image" ColumnName="image" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -274,6 +257,25 @@
           <ScalarProperty Name="managerId" ColumnName="managerId" />
           <ScalarProperty Name="DeptName" ColumnName="DeptName" />
           <ScalarProperty Name="deptId" ColumnName="deptId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sec_Users">
+      <EntityTypeMapping TypeName="NORTHWNDModel.Sec_Users">
+        <MappingFragment StoreEntitySet="Sec_Users">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

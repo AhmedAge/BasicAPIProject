@@ -38,12 +38,12 @@ namespace BasicAPIProject.Models
         public virtual DbSet<Sec_Role> Sec_Role { get; set; }
         public virtual DbSet<Sec_RoleMenu> Sec_RoleMenu { get; set; }
         public virtual DbSet<Sec_RoleMenuUser> Sec_RoleMenuUser { get; set; }
-        public virtual DbSet<Sec_Users> Sec_Users { get; set; }
         public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Territory> Territories { get; set; }
         public virtual DbSet<TokenCheck> TokenChecks { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Sec_Users> Sec_Users { get; set; }
     }
 }
