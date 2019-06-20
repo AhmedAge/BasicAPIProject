@@ -57,13 +57,26 @@ namespace BasicAPIProject.Auth
             }
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
-                var data = await DB.TokenChecks.Where(x => x.email == email &&
-                 x.token == token && x.StartTime <= DateTime.Now && x.EndTime >= DateTime.Now).FirstOrDefaultAsync();
+                int haveAccess = (from i in DB.Sec_RoleMenuUser
+                                  join m in DB.Sec_Menu on i.menuId equals m.menuId
+                                  where m.menuPah == request.Headers.Referrer.AbsolutePath
+                                  join u in DB.Sec_Users on i.userId equals u.userId
+                                  where u.email == email && i.userId == u.userId
 
-                if (data == null)
-                    return false;
-                else
-                    return true;
+                                  select i).Count();
+                if (haveAccess > 0 || request.Headers.Referrer.AbsolutePath == "/login")
+                {
+                    var data = await DB.TokenChecks.Where(x => x.email == email &&
+                                x.token == token && x.StartTime <= DateTime.Now && x.EndTime >= DateTime.Now).FirstOrDefaultAsync();
+
+
+
+                    if (data == null)
+                        return false;
+                    else
+                        return true;
+                }
+                return false;
             }
         }
 
@@ -89,10 +102,10 @@ namespace BasicAPIProject.Auth
             }
         }
 
-        public static async Task<bool> UpdateTokenPost(HttpRequestMessage request,string guid)
+        public static async Task<bool> UpdateTokenPost(HttpRequestMessage request, string guid)
         {
             string token = request.Headers.GetValues("access_token").First();
-            string email = request.Headers.GetValues("email").First(); 
+            string email = request.Headers.GetValues("email").First();
 
             if (token == null || email == null || guid == null)
             {

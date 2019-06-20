@@ -23,6 +23,10 @@ namespace BasicAPIProject.Controllers
         //  [System.Web.Mvc.OutputCache(Duration = 60)]
         public async Task<ISec_RoleMenu> Get(int id)
         {
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return null;
+            }
             //System.Threading.Thread.Sleep(1000);
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
@@ -37,14 +41,16 @@ namespace BasicAPIProject.Controllers
 
                 foreach (Sec_Menu m in menu)
                 {
-                    cus = new CustSec_RoleMenu();
-                    cus.menuId = m.menuId;
-                    cus.roleId = id;
-                    cus.IsChecked = sec_RoleMenuUser.Where(x => x.menuId == m.menuId).Count() > 0 ? true : false;
-                    cus.startupPage_menuId = sec_RoleMenuUser.Where(x => x.menuId == m.menuId && x.startupPage_menuId == true).Count() > 0 ? true : false;
+                    cus = new CustSec_RoleMenu
+                    {
+                        menuId = m.menuId,
+                        roleId = id,
+                        IsChecked = sec_RoleMenuUser.Where(x => x.menuId == m.menuId).Count() > 0 ? true : false,
+                        startupPage_menuId = sec_RoleMenuUser.Where(x => x.menuId == m.menuId && x.startupPage_menuId == true).Count() > 0 ? true : false,
 
-                    cus.menuTitleAr = m.menuTitleAr;
-                    cus.menuTitleEn = m.menuTitleEn;
+                        menuTitleAr = m.menuTitleAr,
+                        menuTitleEn = m.menuTitleEn
+                    };
 
                     listRoleMenu.Add(cus);
                 }
@@ -61,6 +67,10 @@ namespace BasicAPIProject.Controllers
         [HttpPost]
         public async Task<int> SaveRoleMenusUsers(ISec_RoleMenuUser user)
         {
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return -10;
+            }
             if (user == null)
             {
                 throw new ArgumentNullException(nameof(user));
@@ -80,11 +90,13 @@ namespace BasicAPIProject.Controllers
                         Sec_RoleMenuUser menu = null;
                         foreach (CustSec_RoleMenu m in user.roleMenu.Where(x => x.IsChecked == true))
                         {
-                            menu = new Sec_RoleMenuUser();
-                            menu.menuId = m.menuId;
-                            menu.roleId = m.roleId;
-                            menu.userId = UserId;
-                            menu.startupPage_menuId = m.startupPage_menuId;
+                            menu = new Sec_RoleMenuUser
+                            {
+                                menuId = m.menuId,
+                                roleId = m.roleId,
+                                userId = UserId,
+                                startupPage_menuId = m.startupPage_menuId
+                            };
 
                             lst.Add(menu);
                         }

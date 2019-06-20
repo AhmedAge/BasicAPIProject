@@ -16,6 +16,10 @@ namespace BasicAPIProject.Controllers
         //  [System.Web.Mvc.OutputCache(Duration = 60)]
         public async Task<IEnumerable<Department>> Get()
         {
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return null;
+            }
             //System.Threading.Thread.Sleep(1000);
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {

@@ -16,7 +16,12 @@ namespace BasicAPIProject.Controllers
         //  [System.Web.Mvc.OutputCache(Duration = 60)]
         public async Task<IEnumerable<Sec_Role>> Get()
         {
-            //System.Threading.Thread.Sleep(1000);
+
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return null;
+            }
+             
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             { 
                 return await DB.Sec_Role.ToListAsync();
@@ -34,7 +39,11 @@ namespace BasicAPIProject.Controllers
         //  [System.Web.Mvc.OutputCache(Duration = 60)]
         public async Task<ISec_RoleMenu> Get(int id)
         {
-            //System.Threading.Thread.Sleep(1000);
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return null;
+            }
+           
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
                 ISec_RoleMenu obj = new ISec_RoleMenu();
@@ -49,12 +58,14 @@ namespace BasicAPIProject.Controllers
                 }).ToListAsync();
                 foreach (Sec_Menu m in menu)
                 {
-                    cus = new CustSec_RoleMenu();
-                    cus.menuId = m.menuId;
-                    cus.roleId = id;
-                    cus.IsChecked = RoleMenu.Where(x => x.menuId == m.menuId).Count() > 0 ? true : false;
-                    cus.menuTitleAr = m.menuTitleAr;
-                    cus.menuTitleEn = m.menuTitleEn;
+                    cus = new CustSec_RoleMenu
+                    {
+                        menuId = m.menuId,
+                        roleId = id,
+                        IsChecked = RoleMenu.Where(x => x.menuId == m.menuId).Count() > 0 ? true : false,
+                        menuTitleAr = m.menuTitleAr,
+                        menuTitleEn = m.menuTitleEn
+                    };
 
                     listRoleMenu.Add(cus);
                 }
@@ -76,6 +87,10 @@ namespace BasicAPIProject.Controllers
         [HttpPost]
         public async Task<int> SaveRoleMenus(ISec_RoleMenu user)
         {
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return -10;
+            }
             if (user == null)
             {
                 throw new ArgumentNullException(nameof(user));
@@ -95,9 +110,11 @@ namespace BasicAPIProject.Controllers
                         Sec_RoleMenu menu = null;
                         foreach (Sec_RoleMenu m in user.roleMenu.Where(x => x.IsChecked == true))
                         {
-                            menu = new Sec_RoleMenu();
-                            menu.menuId = m.menuId;
-                            menu.roleId = m.roleId;
+                            menu = new Sec_RoleMenu
+                            {
+                                menuId = m.menuId,
+                                roleId = m.roleId
+                            };
                             lst.Add(menu);
                         }
                         DB.Sec_RoleMenu.AddRange(lst);

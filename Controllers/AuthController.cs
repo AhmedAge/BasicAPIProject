@@ -15,9 +15,11 @@ namespace BasicAPIProject.Controllers
         //[Route("api/Auth/Login")]
         public async Task<AuthToken> Login()
         {
-            Login login = new Models.Login();
-            login.email = Request.Headers.GetValues("email").First();
-            login.password = Request.Headers.GetValues("password").First();
+            Login login = new Models.Login
+            {
+                email = Request.Headers.GetValues("email").First(),
+                password = Request.Headers.GetValues("password").First()
+            };
 
             //Check for user in the Database
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
@@ -30,15 +32,19 @@ namespace BasicAPIProject.Controllers
                     {
                         var token = await DB.TokenChecks.Where(x => x.email == login.email).ToListAsync();
                         DB.TokenChecks.RemoveRange(token);
-                        AuthToken auth = new AuthToken();
-                        auth.email = login.email;
-                        auth.access_token = Authentication.GenerateToken(login.email);
+                        AuthToken auth = new AuthToken
+                        {
+                            email = login.email,
+                            access_token = Authentication.GenerateToken(login.email)
+                        };
 
-                        TokenCheck ok = new TokenCheck();
-                        ok.email = auth.email;
-                        ok.token = auth.access_token;
-                        ok.StartTime = DateTime.Now;
-                        ok.EndTime = DateTime.Now.AddMinutes(30);
+                        TokenCheck ok = new TokenCheck
+                        {
+                            email = auth.email,
+                            token = auth.access_token,
+                            StartTime = DateTime.Now,
+                            EndTime = DateTime.Now.AddMinutes(30)
+                        };
                         DB.TokenChecks.Add(ok);
                         await DB.SaveChangesAsync();
 

@@ -266,4 +266,3 @@ G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\bin\Microsoft.
 G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.csprojResolveAssemblyReference.cache
 G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.dll
 G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.pdb
-G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.csprojAssemblyReference.cache

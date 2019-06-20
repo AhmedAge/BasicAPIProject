@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web.Http;  
 using WebAPIAuthentication.Models.CustomModel;
 using BasicAPIProject.Models.CustomModel;
+using BasicAPIProject.Auth;
 
 namespace BasicAPIProject.Controllers
 {
@@ -19,6 +20,10 @@ namespace BasicAPIProject.Controllers
         //  [System.Web.Mvc.OutputCache(Duration = 60)]
         public async Task<IEnumerable<c_category>> Get()
         {
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return null;
+            }
             //System.Threading.Thread.Sleep(1000);
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
@@ -40,6 +45,10 @@ namespace BasicAPIProject.Controllers
         [HttpGet]
         public async Task<c_category> Get(int id)
         {
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return null;
+            }
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
                 return await DB.Categories.Select(x => new c_category()
@@ -58,6 +67,10 @@ namespace BasicAPIProject.Controllers
         [Route("api/Category/GetCategoryProducts/{id}", Name = "GetCategoryProducts")]
         public async Task<List<IProducts>> GetCategoryProducts(int id)
         {
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return null;
+            }
             //System.Threading.Thread.Sleep(2000);
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
@@ -76,7 +89,7 @@ namespace BasicAPIProject.Controllers
         [Route("api/Category/GetCategoryProducts/{id}", Name = "CategoryProducts")]
         public IHttpActionResult CategoryProducts(int id)
         {
-            string d = System.Web.HttpContext.Current.Request.UrlReferrer.AbsoluteUri ;
+           // string d = System.Web.HttpContext.Current.Request.UrlReferrer.AbsoluteUri ;
             return Ok();
         }
     }

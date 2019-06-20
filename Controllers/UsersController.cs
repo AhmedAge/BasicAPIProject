@@ -16,7 +16,11 @@ namespace BasicAPIProject.Controllers
         //  [System.Web.Mvc.OutputCache(Duration = 60)]
         public async Task<IEnumerable<ISec_Users>> Get()
         {
-            //System.Threading.Thread.Sleep(1000);
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return null;
+            }
+             
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
                 return await DB.Sec_Users.Select(i => new ISec_Users()
@@ -60,21 +64,23 @@ namespace BasicAPIProject.Controllers
                 if (Sec_Users != null)
                 {
 
-                    ISec_Users data = new ISec_Users();
-                    data.UserName = Sec_Users.UserName;
-                    data.password = Sec_Users.password;
-                    data.isActive = Sec_Users.isActive;
-                    data.roleId = Sec_Users.roleId;
-                    data.mobile = Sec_Users.mobile;
-                    data.email = Sec_Users.email;
-                    data.address = Sec_Users.address;
-                    data.tel = Sec_Users.tel;
-                    data.Isdeleted = Sec_Users.Isdeleted;
-                    data.FullName = Sec_Users.FullName;
-                    data.Department = Sec_Users.Department;
-                    data.image = Sec_Users.image;
-                    data.userId = Sec_Users.userId;
-                    data.guid = Guid.NewGuid();
+                    ISec_Users data = new ISec_Users
+                    {
+                        UserName = Sec_Users.UserName,
+                        password = Sec_Users.password,
+                        isActive = Sec_Users.isActive,
+                        roleId = Sec_Users.roleId,
+                        mobile = Sec_Users.mobile,
+                        email = Sec_Users.email,
+                        address = Sec_Users.address,
+                        tel = Sec_Users.tel,
+                        Isdeleted = Sec_Users.Isdeleted,
+                        FullName = Sec_Users.FullName,
+                        Department = Sec_Users.Department,
+                        image = Sec_Users.image,
+                        userId = Sec_Users.userId,
+                        guid = Guid.NewGuid()
+                    };
                     await Authentication.UpdateTokenPost(Request, data.guid.ToString());
                     return data;
 
@@ -87,6 +93,11 @@ namespace BasicAPIProject.Controllers
         [HttpPut]
         public async Task<int> SaveUser(ISec_Users user)
         {
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return -10;
+            }
+
             if (user == null)
             {
                 throw new ArgumentNullException(nameof(user));
@@ -125,16 +136,18 @@ namespace BasicAPIProject.Controllers
                         int firstMenuSelect = 0;
                         foreach (Sec_RoleMenu m in role_menu)
                         {
-                            userMenus = new Sec_RoleMenuUser();
-                            userMenus.roleMenuId = m.roleMenuId;
-                            userMenus.roleId = m.roleId;
-                            userMenus.menuId = m.menuId;
-                            userMenus.startupPage_menuId = firstMenuSelect == 0 ? true : false;
-                            userMenus.userId = (int)data.userId;
-                            userMenus.canView = true;
-                            userMenus.canEdit = true;
-                            userMenus.canDelete = true;
-                            userMenus.canAdd = true;
+                            userMenus = new Sec_RoleMenuUser
+                            {
+                                roleMenuId = m.roleMenuId,
+                                roleId = m.roleId,
+                                menuId = m.menuId,
+                                startupPage_menuId = firstMenuSelect == 0 ? true : false,
+                                userId = (int)data.userId,
+                                canView = true,
+                                canEdit = true,
+                                canDelete = true,
+                                canAdd = true
+                            };
                             firstMenuSelect++;
                             userMenusLst.Add(userMenus);
 
@@ -152,6 +165,10 @@ namespace BasicAPIProject.Controllers
         [HttpPost]
         public async Task<int> SaveNewUser(ISec_Users user)
         {
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return -10;
+            }
             if (user == null)
             {
                 throw new ArgumentNullException(nameof(user));
@@ -187,16 +204,18 @@ namespace BasicAPIProject.Controllers
                     int firstMenuSelect = 0;
                     foreach (Sec_RoleMenu m in role_menu)
                     {
-                        userMenus = new Sec_RoleMenuUser();
-                        userMenus.roleMenuId = m.roleMenuId;
-                        userMenus.roleId = m.roleId;
-                        userMenus.menuId = m.menuId;
-                        userMenus.startupPage_menuId = firstMenuSelect == 0 ? true : false;
-                        userMenus.userId = (int)data.userId;
-                        userMenus.canView = true;
-                        userMenus.canEdit = true;
-                        userMenus.canDelete = true;
-                        userMenus.canAdd = true;
+                        userMenus = new Sec_RoleMenuUser
+                        {
+                            roleMenuId = m.roleMenuId,
+                            roleId = m.roleId,
+                            menuId = m.menuId,
+                            startupPage_menuId = firstMenuSelect == 0 ? true : false,
+                            userId = (int)data.userId,
+                            canView = true,
+                            canEdit = true,
+                            canDelete = true,
+                            canAdd = true
+                        };
                         firstMenuSelect++;
                         userMenusLst.Add(userMenus);
 
@@ -204,10 +223,6 @@ namespace BasicAPIProject.Controllers
                     DB.Sec_RoleMenuUser.AddRange(userMenusLst);
                     return await DB.SaveChangesAsync();
                     #endregion
-
-
-
-
                 }
                 return -10;
             }

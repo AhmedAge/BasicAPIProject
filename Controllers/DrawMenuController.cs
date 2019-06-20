@@ -15,52 +15,60 @@ namespace BasicAPIProject.Controllers
         [HttpGet]
         //  [System.Web.Mvc.OutputCache(Duration = 60)]
         [Route("api/DrawMenu/GetString/{data}")]
-        public IEnumerable<MenusInfo> GetString(string data)
+        public async Task<IEnumerable<MenusInfo>> GetString(string data)
         {
+            if (!(await Authentication.IsAuthentication(Request)))
+            {
+                return null;
+            }
             //System.Threading.Thread.Sleep(1000);
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
                 var user = DB.Sec_Users.FirstOrDefault(x => x.UserName == data);
                 if (user != null)
                 {
-                    var userMenus = DB.Sec_RoleMenuUser.Where(x => x.userId == user.userId).Select(x=>x.menuId).ToList();
-                    var menus =  DB.Sec_Menu.Where(x => userMenus.Contains(x.menuId)).ToList();
+                    var userMenus =await DB.Sec_RoleMenuUser.Where(x => x.userId == user.userId).Select(x=>x.menuId).ToListAsync();
+                    var menus = await DB.Sec_Menu.Where(x => userMenus.Contains(x.menuId)).ToListAsync();
                     List<MenusInfo> menusInfoLst = new List<MenusInfo>();
                     MenusInfo parent = null;
                     Sec_Menu child = null;
 
                     foreach (Sec_Menu m in menus.Where(x => x.menuParentId == null))
                     {
-                        parent = new MenusInfo();
-                        parent.menuId = m.menuId;
-                        parent.menuTitleAr = m.menuTitleAr;
-                        parent.menuTitleEn = m.menuTitleEn;
-                        parent.menuPah = m.menuPah;
-                        parent.menuParentId = m.menuParentId;
-                        parent.menuIcon = m.menuIcon;
-                        parent.IsActive = m.IsActive;
-                        parent.MenuOrder = m.MenuOrder;
-                        parent.Images = m.Images;
-                        parent.Description = m.Description;
-                        parent.color = m.color;
-                        parent.UserName = user.FullName;
-                        parent.UserImage = user.image;
+                        parent = new MenusInfo
+                        {
+                            menuId = m.menuId,
+                            menuTitleAr = m.menuTitleAr,
+                            menuTitleEn = m.menuTitleEn,
+                            menuPah = m.menuPah,
+                            menuParentId = m.menuParentId,
+                            menuIcon = m.menuIcon,
+                            IsActive = m.IsActive,
+                            MenuOrder = m.MenuOrder,
+                            Images = m.Images,
+                            Description = m.Description,
+                            color = m.color,
+                            UserName = user.FullName,
+                            UserImage = user.image,
 
-                        parent.childMenusInfo = new List<Sec_Menu>();
+                            childMenusInfo = new List<Sec_Menu>()
+                        };
                         foreach (Sec_Menu c in menus.Where(x => x.menuParentId != null && x.menuParentId == m.menuId))
                         {
-                            child = new Sec_Menu();
-                            child.menuId = c.menuId;
-                            child.menuTitleAr = c.menuTitleAr;
-                            child.menuTitleEn = c.menuTitleEn;
-                            child.menuPah = c.menuPah;
-                            child.menuParentId = c.menuParentId;
-                            child.menuIcon = c.menuIcon;
-                            child.IsActive = c.IsActive;
-                            child.MenuOrder = c.MenuOrder;
-                            child.Images = c.Images;
-                            child.Description = c.Description;
-                            child.color = c.color;
+                            child = new Sec_Menu
+                            {
+                                menuId = c.menuId,
+                                menuTitleAr = c.menuTitleAr,
+                                menuTitleEn = c.menuTitleEn,
+                                menuPah = c.menuPah,
+                                menuParentId = c.menuParentId,
+                                menuIcon = c.menuIcon,
+                                IsActive = c.IsActive,
+                                MenuOrder = c.MenuOrder,
+                                Images = c.Images,
+                                Description = c.Description,
+                                color = c.color
+                            };
 
                             parent.childMenusInfo.Add(child);
                         }
