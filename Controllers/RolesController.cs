@@ -87,10 +87,10 @@ namespace BasicAPIProject.Controllers
         [HttpPost]
         public async Task<int> SaveRoleMenus(ISec_RoleMenu user)
         {
-            if (!(await Authentication.IsAuthentication(Request)))
-            {
-                return -10;
-            }
+            //if (!(await Authentication.IsAuthentication(Request)))
+            //{
+            //    return -10;
+            //}
             if (user == null)
             {
                 throw new ArgumentNullException(nameof(user));

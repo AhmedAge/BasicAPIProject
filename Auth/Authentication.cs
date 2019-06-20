@@ -57,13 +57,34 @@ namespace BasicAPIProject.Auth
             }
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
-                int haveAccess = (from i in DB.Sec_RoleMenuUser
+                int path = request.Headers.Referrer.AbsolutePath.LastIndexOf('/') + 1;
+
+                string lastpart = request.Headers.Referrer.AbsolutePath.Substring(path,
+                    request.Headers.Referrer.AbsolutePath.Length - path);
+
+                int res = 0;
+                bool bat = Int32.TryParse(lastpart, out res);
+
+                int haveAccess = 0;
+                if (bat == false)
+                {
+                    haveAccess = (from i in DB.Sec_RoleMenuUser
                                   join m in DB.Sec_Menu on i.menuId equals m.menuId
                                   where m.menuPah == request.Headers.Referrer.AbsolutePath
                                   join u in DB.Sec_Users on i.userId equals u.userId
                                   where u.email == email && i.userId == u.userId
-
                                   select i).Count();
+                }
+                else
+                {
+                    string p = request.Headers.Referrer.AbsolutePath.Substring(0, path-1);
+                    haveAccess = (from i in DB.Sec_RoleMenuUser
+                                  join m in DB.Sec_Menu on i.menuId equals m.menuId
+                                  where m.menuPah == p
+                                  join u in DB.Sec_Users on i.userId equals u.userId
+                                  where u.email == email && i.userId == u.userId
+                                  select i).Count();
+                }
                 if (haveAccess > 0 || request.Headers.Referrer.AbsolutePath == "/login")
                 {
                     var data = await DB.TokenChecks.Where(x => x.email == email &&

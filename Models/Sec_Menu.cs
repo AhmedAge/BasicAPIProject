@@ -26,5 +26,6 @@ namespace BasicAPIProject.Models
         public string Description { get; set; }
         public string color { get; set; }
         public string path { get; set; }
+        public Nullable<bool> showInMenu { get; set; }
     }
 }

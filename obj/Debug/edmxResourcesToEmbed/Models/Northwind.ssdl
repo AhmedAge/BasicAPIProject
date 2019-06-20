@@ -156,7 +156,8 @@
     <Property Name="Images" Type="nvarchar" MaxLength="200" />
     <Property Name="Description" Type="nvarchar" MaxLength="200" />
     <Property Name="color" Type="nvarchar" MaxLength="100" />
-    <Property Name="path" Type="nvarchar" MaxLength="100" />
+    <Property Name="path" Type="nvarchar" MaxLength="200" />
+    <Property Name="showInMenu" Type="bit" />
   </EntityType>
   <EntityType Name="Sec_Role">
     <Key>

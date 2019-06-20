@@ -132,23 +132,6 @@
     <Property Name="RegionDescription" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Territories" Relationship="Self.FK_Territories_Region" FromRole="Region" ToRole="Territories" />
   </EntityType>
-  <EntityType Name="Sec_Menu">
-    <Key>
-      <PropertyRef Name="menuId" />
-    </Key>
-    <Property Name="menuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="menuTitleAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="menuTitleEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="menuPah" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="menuParentId" Type="Int32" />
-    <Property Name="menuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IsActive" Type="Boolean" Nullable="false" />
-    <Property Name="MenuOrder" Type="Int32" />
-    <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="color" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="Sec_Role">
     <Key>
       <PropertyRef Name="roleId" />
@@ -350,7 +333,6 @@
     <EntitySet Name="Orders" EntityType="Self.Order" />
     <EntitySet Name="Products" EntityType="Self.Product" />
     <EntitySet Name="Regions" EntityType="Self.Region" />
-    <EntitySet Name="Sec_Menu" EntityType="Self.Sec_Menu" />
     <EntitySet Name="Sec_Role" EntityType="Self.Sec_Role" />
     <EntitySet Name="Sec_RoleMenu" EntityType="Self.Sec_RoleMenu" />
     <EntitySet Name="Sec_RoleMenuUser" EntityType="Self.Sec_RoleMenuUser" />
@@ -401,6 +383,7 @@
     </AssociationSet>
     <EntitySet Name="Departments" EntityType="NORTHWNDModel.Department" />
     <EntitySet Name="Sec_Users" EntityType="NORTHWNDModel.Sec_Users" />
+    <EntitySet Name="Sec_Menu" EntityType="NORTHWNDModel.Sec_Menu" />
   </EntityContainer>
   <EntityType Name="Department">
     <Key>
@@ -428,5 +411,23 @@
     <Property Name="Department" Type="Int32" />
     <Property Name="image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Sec_Menu">
+    <Key>
+      <PropertyRef Name="menuId" />
+    </Key>
+    <Property Name="menuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="menuTitleAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="menuTitleEn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="menuPah" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="menuParentId" Type="Int32" />
+    <Property Name="menuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="MenuOrder" Type="Int32" />
+    <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="color" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="showInMenu" Type="Boolean" />
   </EntityType>
 </Schema>

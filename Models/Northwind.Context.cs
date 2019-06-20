@@ -34,7 +34,6 @@ namespace BasicAPIProject.Models
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
-        public virtual DbSet<Sec_Menu> Sec_Menu { get; set; }
         public virtual DbSet<Sec_Role> Sec_Role { get; set; }
         public virtual DbSet<Sec_RoleMenu> Sec_RoleMenu { get; set; }
         public virtual DbSet<Sec_RoleMenuUser> Sec_RoleMenuUser { get; set; }
@@ -45,5 +44,6 @@ namespace BasicAPIProject.Models
         public virtual DbSet<TokenCheck> TokenChecks { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Sec_Users> Sec_Users { get; set; }
+        public virtual DbSet<Sec_Menu> Sec_Menu { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace BasicAPIProject.Controllers
                 if (user != null)
                 {
                     var userMenus =await DB.Sec_RoleMenuUser.Where(x => x.userId == user.userId).Select(x=>x.menuId).ToListAsync();
-                    var menus = await DB.Sec_Menu.Where(x => userMenus.Contains(x.menuId)).ToListAsync();
+                    var menus = await DB.Sec_Menu.Where(x => userMenus.Contains(x.menuId) && x.showInMenu == true).ToListAsync();
                     List<MenusInfo> menusInfoLst = new List<MenusInfo>();
                     MenusInfo parent = null;
                     Sec_Menu child = null;

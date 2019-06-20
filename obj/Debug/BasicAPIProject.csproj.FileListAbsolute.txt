@@ -263,6 +263,6 @@ G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\bin\Microsoft.
 G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\bin\Microsoft.AI.ServerTelemetryChannel.xml
 G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\bin\Microsoft.AI.WindowsServer.xml
 G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\bin\Microsoft.AI.Web.xml
-G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.csprojResolveAssemblyReference.cache
 G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.dll
 G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.pdb
+G:\Work\AlberCharity\AblerCharity\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.csprojResolveAssemblyReference.cache

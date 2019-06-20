@@ -125,24 +125,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Sec_Menu">
-      <EntityTypeMapping TypeName="NORTHWNDModel.Sec_Menu">
-        <MappingFragment StoreEntitySet="Sec_Menu">
-          <ScalarProperty Name="path" ColumnName="path" />
-          <ScalarProperty Name="color" ColumnName="color" />
-          <ScalarProperty Name="menuId" ColumnName="menuId" />
-          <ScalarProperty Name="menuTitleAr" ColumnName="menuTitleAr" />
-          <ScalarProperty Name="menuTitleEn" ColumnName="menuTitleEn" />
-          <ScalarProperty Name="menuPah" ColumnName="menuPah" />
-          <ScalarProperty Name="menuParentId" ColumnName="menuParentId" />
-          <ScalarProperty Name="menuIcon" ColumnName="menuIcon" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
-          <ScalarProperty Name="Images" ColumnName="Images" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Sec_Role">
       <EntityTypeMapping TypeName="NORTHWNDModel.Sec_Role">
         <MappingFragment StoreEntitySet="Sec_Role">
@@ -276,6 +258,25 @@
           <ScalarProperty Name="isActive" ColumnName="isActive" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sec_Menu">
+      <EntityTypeMapping TypeName="NORTHWNDModel.Sec_Menu">
+        <MappingFragment StoreEntitySet="Sec_Menu">
+          <ScalarProperty Name="showInMenu" ColumnName="showInMenu" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Images" ColumnName="Images" />
+          <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="menuIcon" ColumnName="menuIcon" />
+          <ScalarProperty Name="menuParentId" ColumnName="menuParentId" />
+          <ScalarProperty Name="menuPah" ColumnName="menuPah" />
+          <ScalarProperty Name="menuTitleEn" ColumnName="menuTitleEn" />
+          <ScalarProperty Name="menuTitleAr" ColumnName="menuTitleAr" />
+          <ScalarProperty Name="menuId" ColumnName="menuId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
