@@ -114,21 +114,21 @@ namespace BasicAPIProject.Controllers
                         DB.Sec_RoleMenuUser.RemoveRange(secrolemenuuser);
                         await DB.SaveChangesAsync();
 
-                        List<int> menuIds = user.roleMenu.Select(x => x.menuId).ToList();
+                        //List<int> menuIds = user.roleMenu.Select(x => x.menuId).ToList();
 
-                        var notShownInMenu = from i in DB.Sec_Menu
-                                             where i.menuParentId != null
-                                             where i.showInMenu == false && menuIds.Contains(i.menuParentId.Value)
-                                             select i.menuId;
-                        foreach (int m in notShownInMenu)
-                        {
-                            menu = new Sec_RoleMenu
-                            {
-                                menuId = m,
-                                roleId = roleid
-                            };
-                            lst.Add(menu);
-                        }
+                        //var notShownInMenu = from i in DB.Sec_Menu
+                        //                     where i.menuParentId != null
+                        //                     where i.showInMenu == false && menuIds.Contains(i.menuParentId.Value)
+                        //                     select i.menuId;
+                        //foreach (int m in notShownInMenu)
+                        //{
+                        //    menu = new Sec_RoleMenu
+                        //    {
+                        //        menuId = m,
+                        //        roleId = roleid
+                        //    };
+                        //    lst.Add(menu);
+                        //}
 
                         foreach (Sec_RoleMenu m in user.roleMenu.Where(x => x.IsChecked == true))
                         {
