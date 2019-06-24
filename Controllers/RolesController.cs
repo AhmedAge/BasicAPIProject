@@ -50,7 +50,7 @@ namespace BasicAPIProject.Controllers
                 CustSec_RoleMenu cus = null;
                 List<CustSec_RoleMenu> listRoleMenu = new List<CustSec_RoleMenu>();
 
-                var menu = await DB.Sec_Menu.ToListAsync();
+                var menu = await DB.Sec_Menu.OrderBy(x=>x.MenuOrder).ToListAsync();
                 var RoleMenu = await DB.Sec_RoleMenu.Where(x => x.roleId == id).Select(x => new RoleMenu()
                 {
                     roleId = x.roleId,
@@ -64,7 +64,9 @@ namespace BasicAPIProject.Controllers
                         roleId = id,
                         IsChecked = RoleMenu.Where(x => x.menuId == m.menuId).Count() > 0 ? true : false,
                         menuTitleAr = m.menuTitleAr,
-                        menuTitleEn = m.menuTitleEn
+                        menuTitleEn = m.menuTitleEn,
+                        parentmenuId = m.menuParentId
+                       
                     };
 
                     listRoleMenu.Add(cus);

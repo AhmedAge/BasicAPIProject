@@ -17,5 +17,7 @@ namespace BasicAPIProject.Models.CustomModel
         public string menuTitleEn;
         public string menuTitleAr;
         public bool? startupPage_menuId;
+        public int? parentmenuId;
+       
     }
 }
