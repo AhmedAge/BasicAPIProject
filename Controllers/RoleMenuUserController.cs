@@ -34,7 +34,7 @@ namespace BasicAPIProject.Controllers
                 CustSec_RoleMenu cus = null;
                 List<CustSec_RoleMenu> listRoleMenu = new List<CustSec_RoleMenu>();
 
-                var menu = await DB.Sec_Menu.ToListAsync();
+                var menu = await DB.Sec_Menu.OrderBy(x=>x.MenuOrder).ToListAsync();
                 var sec_RoleMenuUser = await DB.Sec_RoleMenuUser.Where(x => x.userId == id).ToListAsync();
                 var roleId = DB.Sec_Users.FirstOrDefault(x=>x.userId == id).roleId;
                 var menu_roles = await DB.Sec_RoleMenu.Where(x => x.roleId == roleId).ToListAsync();
