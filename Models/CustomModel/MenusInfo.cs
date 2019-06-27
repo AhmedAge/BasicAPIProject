@@ -9,6 +9,7 @@ namespace BasicAPIProject.Models.CustomModel
     {
         public string UserName;
         public string UserImage;
+        public bool ShowStartup;
 
         public List<Sec_Menu> childMenusInfo;
     } 

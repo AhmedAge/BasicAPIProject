@@ -49,7 +49,8 @@ namespace BasicAPIProject.Controllers
                         startupPage_menuId = sec_RoleMenuUser.Where(x => x.menuId == m.menuId && x.startupPage_menuId == true).Count() > 0 ? true : false,
 
                         menuTitleAr = m.menuTitleAr,
-                        menuTitleEn = m.menuTitleEn
+                        menuTitleEn = m.menuTitleEn,
+                        parentmenuId = m.menuParentId
                     };
 
                     listRoleMenu.Add(cus);
@@ -78,7 +79,7 @@ namespace BasicAPIProject.Controllers
 
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
-                if (await Authentication.UpdateTokenPostCheck(Request, RequestType.POST))
+                if (await Authentication.UpdateTokenPostCheck(Request))
                 {
                     try
                     {

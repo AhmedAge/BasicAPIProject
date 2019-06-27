@@ -262,7 +262,6 @@ G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\bin\Microso
 G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\bin\Microsoft.AI.ServerTelemetryChannel.xml
 G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\bin\Microsoft.AI.WindowsServer.xml
 G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\bin\Microsoft.AI.Web.xml
-G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.csprojAssemblyReference.cache
 G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.csproj.CoreCompileInputs.cache
 G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.csproj.CopyComplete
 G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.dll

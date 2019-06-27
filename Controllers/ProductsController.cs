@@ -102,7 +102,7 @@ namespace BasicAPIProject.Controllers
                 var data = await DB.Products.FirstOrDefaultAsync(x => x.ProductID == product.ProductID);
                 if (data != null)
                 {
-                    if (await Authentication.UpdateTokenPostCheck(Request, RequestType.POST))
+                    if (await Authentication.UpdateTokenPostCheck(Request))
                     {
                         data.ProductName = product.ProductName;
                         data.SupplierID = product.SupplierID;
@@ -153,7 +153,7 @@ namespace BasicAPIProject.Controllers
              
                 if (product != null)
                 {
-                    if (await Authentication.UpdateTokenPostCheck(Request, RequestType.POST))
+                    if (await Authentication.UpdateTokenPostCheck(Request))
                     {
                         try
                         {

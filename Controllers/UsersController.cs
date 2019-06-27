@@ -105,7 +105,7 @@ namespace BasicAPIProject.Controllers
 
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
-                if (await Authentication.UpdateTokenPostCheck(Request, RequestType.POST))
+                if (await Authentication.UpdateTokenPostCheck(Request))
                 {
                     var data = await DB.Sec_Users.FirstOrDefaultAsync(x => x.userId == user.userId);
                     if (data != null)
@@ -176,7 +176,7 @@ namespace BasicAPIProject.Controllers
 
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
-                if (await Authentication.UpdateTokenPostCheck(Request, RequestType.POST))
+                if (await Authentication.UpdateTokenPostCheck(Request))
                 {
                     Sec_Users data = new Sec_Users();
                     string username = user.email.Split('@')[0];

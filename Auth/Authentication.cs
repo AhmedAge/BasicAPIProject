@@ -62,7 +62,7 @@ namespace BasicAPIProject.Auth
                 string lastpart = request.Headers.Referrer.AbsolutePath.Substring(path,
                     request.Headers.Referrer.AbsolutePath.Length - path);
 
-                int res = 0;
+                int res;
                 bool bat = Int32.TryParse(lastpart, out res);
 
                 int haveAccess = 0;
@@ -101,7 +101,7 @@ namespace BasicAPIProject.Auth
             }
         }
 
-        public static async Task<bool> UpdateTokenPostCheck(HttpRequestMessage request, RequestType type)
+        public static async Task<bool> UpdateTokenPostCheck(HttpRequestMessage request)
         {
             string token = request.Headers.GetValues("access_token").First();
             string email = request.Headers.GetValues("email").First();

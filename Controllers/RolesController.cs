@@ -100,7 +100,7 @@ namespace BasicAPIProject.Controllers
 
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
-                if (await Authentication.UpdateTokenPostCheck(Request, RequestType.POST))
+                if (await Authentication.UpdateTokenPostCheck(Request))
                 {
                     try
                     {
