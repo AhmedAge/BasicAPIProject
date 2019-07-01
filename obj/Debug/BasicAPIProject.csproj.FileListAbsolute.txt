@@ -266,3 +266,4 @@ G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\obj\Debug\B
 G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.csproj.CopyComplete
 G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.dll
 G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.pdb
+G:\KFU_projects\WebAPIAuthentication\BasicAPIProject\BasicAPIProject\obj\Debug\BasicAPIProject.csprojAssemblyReference.cache

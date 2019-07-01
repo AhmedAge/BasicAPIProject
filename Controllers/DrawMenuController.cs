@@ -102,6 +102,8 @@ namespace BasicAPIProject.Controllers
             public bool? startupPage_menuId;
         }
 
+
+
         [HttpOptions]
         [Route("api/DrawMenu/GetString/{data}", Name = "GetDrawMenuTest")]
         public IHttpActionResult GetDrawMenu(string data)

@@ -139,7 +139,7 @@ namespace BasicAPIProject.Controllers
         [Route("api/Products/GetGu", Name = "GetGuTest")]
         public void GetGuTest()
         { 
-        }
+        } 
 
         [HttpPost]
         public async Task<int> SaveNewProduct(IProducts product)

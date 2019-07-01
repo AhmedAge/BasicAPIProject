@@ -203,6 +203,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\DrawMenuController.cs" />
+    <Compile Include="Controllers\HaveAccessController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RoleMenuUserController.cs" />
