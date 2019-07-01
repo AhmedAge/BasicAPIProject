@@ -27,10 +27,10 @@ namespace BasicAPIProject.Controllers
 
             using (NORTHWNDEntities DB = new NORTHWNDEntities())
             {
-                int path = Request.Headers.Referrer.AbsolutePath.LastIndexOf('/') + 1;
+                int path = check.url.LastIndexOf('/') + 1;
 
-                string lastpart = Request.Headers.Referrer.AbsolutePath.Substring(path,
-                    Request.Headers.Referrer.AbsolutePath.Length - path);
+                string lastpart = check.url.Substring(path,
+                    check.url.Length - path);
 
                 int res;
                 bool bat = Int32.TryParse(lastpart, out res);
